@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  loadbalancer:
+    build:
+      context: .
+      dockerfile: Dockerfile.loadbalancer
+    ports:
+      - 80:80
+    networks:
+      - mynetwork
+
+  appserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.appserver
+    ports:
+      - 8000:8000
+    networks:
+      - mynetwork
+
+  database:
+    build:
+      context: .
+      dockerfile: Dockerfile.database
+    ports:
+      - 5432:5432
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

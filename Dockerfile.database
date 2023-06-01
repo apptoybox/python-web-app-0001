@@ -1,0 +1,15 @@
+# Use an official PostgreSQL image as the base
+FROM postgres:latest
+
+# Set the default values for the environment variables
+ARG POSTGRES_USER=myuser
+ARG POSTGRES_PASSWORD=mypassword
+ARG POSTGRES_DB=mydb
+
+# Set the environment variables for the database
+ENV POSTGRES_USER=${POSTGRES_USER}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+ENV POSTGRES_DB=${POSTGRES_DB}
+
+# Copy the initialization script into the container
+COPY init.sql /docker-entrypoint-initdb.d/
